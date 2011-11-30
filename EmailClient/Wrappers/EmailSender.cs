@@ -10,19 +10,19 @@ namespace EmailClient.Wrappers
     [SimplInject]
     public class EmailSender : IEmailSender
     {
-        private static readonly string FromAccountName =
-            ConfigurationManager.AppSettings["from-account-name"];
+        private static readonly string FromAccountEmail =
+            ConfigurationManager.AppSettings["EmailClient.Account"];
         private static readonly string FromAccountPassword = 
-            ConfigurationManager.AppSettings["from-account-password"];
+            ConfigurationManager.AppSettings["EmailClient.Password"];
         private static readonly string SmtpServer = 
-            ConfigurationManager.AppSettings["smtp-server"];
+            ConfigurationManager.AppSettings["EmailClient.SMTP"];
         private const int SmtpPort = 587;
 
         public void Send(Email email)
         {
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(email.From ?? FromAccountName),
+                From = new MailAddress(email.From ?? FromAccountEmail),
                 BodyEncoding = email.Encoding,
                 SubjectEncoding = email.Encoding,
                 Subject = email.Subject,
@@ -38,7 +38,7 @@ namespace EmailClient.Wrappers
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromAccountName, FromAccountPassword)
+                Credentials = new NetworkCredential(FromAccountEmail, FromAccountPassword)
             };
 
             smtp.Send(mailMessage);
