@@ -1,1 +1,30 @@
-under construction =)
+Usage example:
+Add the following keys to your app.config:
+
+<appSettings>
+  <add key="EmailClient.SMTP" value="{your-smtp-server}" />
+  <add key="EmailClient.Account" value="{your-email-account}" />
+  <add key="EmailClient.Password" value="{your-email-password}" />
+  <add key="EmailClient.Templates.Path" value="{your-templates-path}" />
+</appSettings>
+
+
+var emailSender = new EmailSender();
+var values = new Dictionary<string, string>
+                 {
+                     {"key1", "value1"},
+                     {"key2", "value2"}
+                 };
+
+var subjectTemplatePath = Path.Combine(ConfigurationManager.AppSettings["EmailClient.Templates.Path"],
+                                    "{your-subject-template-name}");
+var bodyTemplatePath = Path.Combine(ConfigurationManager.AppSettings["EmailClient.Templates.Path"],
+                                    "{your-body-template-name}");
+var email = new Email
+                {
+                   Subject = contentBuilder.BuildSubject(subjectTemplatePath),
+                   Body = contentBuilder.BuildBodyFor(values, bodyTemplatePath),
+                   To = new List<string> {"email-of-the-recipient"}
+                };
+
+emailSender.Send(email);
