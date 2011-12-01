@@ -8,8 +8,9 @@ Add the following keys to your app.config:
   <add key="EmailClient.Templates.Path" value="{your-templates-path}" />
 </appSettings>
 
-
+var contentBuilder = new EmailContentBuilder(new ContentTemplateBuilder(new ReadFileWrapper()));
 var emailSender = new EmailSender();
+
 var values = new Dictionary<string, string>
                  {
                      {"key1", "value1"},
