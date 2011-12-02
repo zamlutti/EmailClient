@@ -4,9 +4,9 @@ namespace EmailClient.Builders
 {
     public interface IEmailContentBuilder
     {
-        string BuildSubject(string subjectTemplatePath);
+        string BuildSubjectFor(string templatePath);
 
         string BuildBodyFor(IEnumerable<KeyValuePair<string, string>> valuesToBeReplaced,
-                                            string bodyTemplatePath);
+                                            string templatePath);
     }
 }

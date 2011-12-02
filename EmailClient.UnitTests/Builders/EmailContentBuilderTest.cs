@@ -34,7 +34,7 @@ namespace EmailClient.UnitTests.Builders
         {
             GivenTheSubjectCanBeBuild();
 
-            _contentBuilder.BuildSubject(SubjectTemplatePath).Should().Be.EqualTo(Subject);
+            _contentBuilder.BuildSubjectFor(SubjectTemplatePath).Should().Be.EqualTo(Subject);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace EmailClient.UnitTests.Builders
         {
             GivenTheSubjectCanBeBuild();
 
-            _contentBuilder.BuildSubject(SubjectTemplatePath);
+            _contentBuilder.BuildSubjectFor(SubjectTemplatePath);
             _contentTemplateBuilderMock.Verify(it=>it.UsingTemplate(SubjectTemplatePath), Times.Once());
         }
 
@@ -51,7 +51,7 @@ namespace EmailClient.UnitTests.Builders
         {
             GivenTheSubjectCanBeBuild();
 
-            _contentBuilder.BuildSubject(SubjectTemplatePath);
+            _contentBuilder.BuildSubjectFor(SubjectTemplatePath);
             _contentTemplateBuilderMock.Verify(it=>it.Build(), Times.Once());
         }
 

@@ -13,18 +13,18 @@ namespace EmailClient.Builders
             _contentTemplateBuilder = contentTemplateBuilder;
         }
 
-        public string BuildSubject(string subjectTemplatePath)
+        public string BuildSubjectFor(string templatePath)
         {
             return _contentTemplateBuilder
-                .UsingTemplate(subjectTemplatePath)
+                .UsingTemplate(templatePath)
                 .Build();
         }
 
         public string BuildBodyFor(IEnumerable<KeyValuePair<string, string>> valuesToBeReplaced,
-                                   string bodyTemplatePath)
+                                   string templatePath)
         {
             var templateLoaded = _contentTemplateBuilder
-                .UsingTemplate(bodyTemplatePath);
+                .UsingTemplate(templatePath);
 
             foreach (var keyValuePair in valuesToBeReplaced)
             {
