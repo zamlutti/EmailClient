@@ -32,9 +32,9 @@ bc..         var emailFactory = new EmailFactory();
 						};
 
 	var email = emailFactory.CreateFromTemplateFor(isHtml, 
-                                               "subjectTemplateName", 
-                                               "bodyTemplateName",
-					       valuesToReplaceOnBodyTemplate, 
-                                               "first-recipient", "second-recipient");
+	                                               "subjectTemplateName", 
+	                                               "bodyTemplateName",
+						       valuesToReplaceOnBodyTemplate, 
+	                                               "first-recipient", "second-recipient");
 
 	emailSender.Send(email);
