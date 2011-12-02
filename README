@@ -10,26 +10,26 @@ Add the following keys to your app.config:
 </appSettings>
 
 
-Code:
+Usage with subject and body as strings:
 
-var contentBuilder = new EmailContentBuilder(new ContentTemplateBuilder(new ReadFileWrapper()));
+var emailFactory = new EmailFactory();
 var emailSender = new EmailSender();
+var isHtml = false;
 
-var values = new Dictionary<string, string>
-                 {
-                     {"key1", "value1"},
-                     {"key2", "value2"}
-                 };
+var email = emailFactory.CreateFor(isHtml, "subject", "body", "first-recipient", "second-recipient");
 
-var subjectTemplatePath = Path.Combine(ConfigurationManager.AppSettings["EmailClient.Templates.Path"],
-                                    "{your-subject-template-name}");
-var bodyTemplatePath = Path.Combine(ConfigurationManager.AppSettings["EmailClient.Templates.Path"],
-                                    "{your-body-template-name}");
-var email = new Email
-                {
-                   Subject = contentBuilder.BuildSubject(subjectTemplatePath),
-                   Body = contentBuilder.BuildBodyFor(values, bodyTemplatePath),
-                   To = new List<string> {"email-of-the-recipient"}
-                };
+emailSender.Send(email);
+
+
+Usage with subject and body as templates:
+
+var emailFactory = new EmailFactory();
+var emailSender = new EmailSender();
+var isHtml = false;
+
+var email = emailFactory.CreateWithTemplateFor(isHtml, 
+                                               "subjectTemplateName", 
+                                               "bodyTemplateName", 
+                                               "first-recipient", "second-recipient");
 
 emailSender.Send(email);
