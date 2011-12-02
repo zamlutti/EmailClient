@@ -27,9 +27,9 @@ bc..         var emailFactory = new EmailFactory();
 	var emailSender = new EmailSender();
 	var isHtml = false;
 	var valuesToReplaceOnBodyTemplate = new Dictionary<string, string>
-											{
-												{"first-key","first-value"}
-											};
+						{
+							{"first-key","first-value"}
+						};
 
 	var email = emailFactory.CreateFromTemplateFor(isHtml, 
                                                "subjectTemplateName", 
