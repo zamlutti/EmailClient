@@ -34,7 +34,7 @@ bc..         var emailFactory = new EmailFactory();
 	var email = emailFactory.CreateFromTemplateFor(isHtml, 
                                                "subjectTemplateName", 
                                                "bodyTemplateName",
-											   valuesToReplaceOnBodyTemplate, 
+					       valuesToReplaceOnBodyTemplate, 
                                                "first-recipient", "second-recipient");
 
 	emailSender.Send(email);
