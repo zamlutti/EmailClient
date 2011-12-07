@@ -38,6 +38,8 @@ namespace EmailClient.Builders
             _valuesToBeReplaced
                 .Each(it => template = template.Replace(it.Key, it.Value));
 
+            _valuesToBeReplaced.Clear();
+
             return template;
         }
     }
